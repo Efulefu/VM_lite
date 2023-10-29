@@ -4,6 +4,22 @@
 #define OPC(i) ((i)>>12)
 #define NOPS (16) // number of different instructions
 
+enum regist {
+    R0 = 0,
+    R1,
+    R2,
+    R3,
+    R4,
+    R5,
+    R6,
+    R7,
+    RPC,
+    RCND,
+    RCNT
+};
+uint16_t reg[RCNT] = {0};
+
+
 typedef void (*op_ex_f)(uint16_t instruction);
 
 // conditional branch
