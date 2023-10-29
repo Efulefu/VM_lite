@@ -5,15 +5,15 @@
 #include "memory.h"
 #include "globals.h"
 
-static inline void tgetc() {
+void tgetc() {
     reg[R0] = getchar();
 }
 
-static inline void tout() {
+void tout() {
     fprintf(stdout, "%c", (char)reg[R0]);
 }
 
-static inline void tputs() {
+void tputs() {
     uint16_t *p = mem + reg[R0];
     while(*p) {
         fprintf(stdout, "%c", (char)*p);
@@ -21,19 +21,28 @@ static inline void tputs() {
     }
 }
 
-static inline void tin() {
+void tin() {
     tgetc();
     tout();
 }
 
-static inline void thalt() {
+void tputsp() {
+    uint16_t *p = mem + reg[R0];
+    char *cp = (char*)p;
+    while(*cp) {
+        fprintf(stdout, "%c", *p);
+        cp++;
+    }
+}
+
+void thalt() {
     running = false;
 }
 
-static inline void tinu16() {
+void tinu16() {
     fscanf(stdin, "%hu", &reg[R0]);
 }
 
-static inline void toutu16() {
+void toutu16() {
     fprintf(stdout, "%hu\n", reg[R0]);
 }

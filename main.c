@@ -1,6 +1,7 @@
 #include "includes.h"
 #include <stdio.h>
 #include "memory.h"
+#include "io.h"
 #include "cpu.h"
 #include "globals.h"
 
